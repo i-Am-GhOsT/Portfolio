@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "portfolio"
+version = "0.1.0"
+description = "Streamlit based python portfolio webpage"
+authors = ["Arindam Tanti <arindamtanti123@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11.0"
+rich = "^13.7.1"
+python-dotenv = "^1.0.1"
+streamlit = "^1.32.2"
+pip = "^24.0"
+pillow = "^10.2.0"
+black = "^24.3.0"
+setuptools = "^69.2.0"
+toml = "^0.10.2"
+
+[tool.poetry.group.dev.dependencies]
+rich = "^13.7.1"
+python-dotenv = "^1.0.1"
+streamlit = "^1.32.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

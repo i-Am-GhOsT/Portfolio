@@ -1,0 +1,12 @@
+# Files
+*.env
+# Tracking For Now.
+# src/assets/Resume.pdf
+src/assets/Signature.png
+
+# Folders
+**/.DS_STORE
+**/scripts/
+**/logs/
+**/build/
+
