@@ -1,6 +1,7 @@
 from pathlib import Path
 import streamlit as st
 from PIL import Image
+import os
 
 # ----- PATH SETTINGS ----
 
@@ -8,20 +9,24 @@ curr_dir = Path(__file__).parent if "__file__" in locals() else Path.cdw()
 css_file = curr_dir / "styles" / "main.css"
 
 # Resume Section
-resume_resource = curr_dir / "assets" / "Resume.pdf"
+RESUME = "https://ugc.production.linktr.ee/5c226145-4213-4733-b41f-e1781f2b67ba_Arindam-Tanti-2024.pdf"
+# RESUME = curr_dir / "assets" / "Resume.pdf"
+# with open(RESUME, "rb") as RESUME_handle:
+#     PDFByte = RESUME_handle.read()
 
 # Profile Signature Sections
 # If you want to have a photo as a sigiatal signature then,
 # signature_file = curr_dir / "assets" / "Signature.png" # ENABLE, IF YOU WANT A PICTURE
-signature_file_handle = "Arindam Tanti" # DISABLE, IF YOU WANT A PICTURE
-#signature_file_handle = Image.open(signature_file)
+SIGNATURE = "Arindam Tanti" # DISABLE, IF YOU WANT A PICTURE
+#SIGNATURE = Image.open(signature_file)
 
+# Profile Picture Section
 # If you want to have a gif profile pic the portfolio, 
-# then comment line 14 and uncomment line 15.
+# then comment line with (profile-pic.gif) and uncomment line with (profile-pic.png).
+PROFILE_PIC = curr_dir / "assets" / "profile-pic.png"
+# PROFILE_PIC_GIF = curr_dir / "assets" / "profile-pic.gif"
+PROFILE_PIC_file_handle = Image.open(PROFILE_PIC)
 
-profile_pic = curr_dir / "assets" / "profile-pic.png"
-profile_pic_file_handle = Image.open(profile_pic)
-# profile_pic_gif = curr_dir / "assets" / "profile-pic.gif"
 
 # -- GENERAL SETTINGS ---
 
@@ -58,27 +63,27 @@ with open(css_file) as style_file_handle:
     st.markdown(
         "<style>{}</style>".format(style_file_handle.read()), unsafe_allow_html=True
     )
-with open(resume_resource, "rb") as resume_resource_handle:
-    PDFByte = resume_resource_handle.read()
 
 
 # --- INTRO SECTION ---
 
 col1, col2 = st.columns(2, gap="small")
 with col1:
-    st.image(profile_pic_file_handle,clamp=False)
+    st.image(PROFILE_PIC_file_handle,clamp=False)
 
 with col2:
     st.title(NAME)
     st.write(DESCRIPTION)
-    st.download_button(
-        label="**⬇️ Download Resumé**",
-        data=PDFByte,
-        file_name=resume_resource.name,
-        mime="application/octet-stream",
-    )
-    st.write("📬", EMAIL, unsafe_allow_html=False)
-
+    # Enable if you want to upload a PDF File into the repo.
+    # st.download_button(
+    #     label="**⬇️ Download Resumé**",
+    #     data=PDFByte,
+    #     file_name=RESUME.name,
+    #     mime="application/octet-stream",
+    # )
+    # st.write("📬", EMAIL, unsafe_allow_html=False)
+    st.link_button("**📄 Download Resumé**", RESUME)
+    st.link_button("**📬 Mail Me**", "mailto:{}".format(EMAIL))
 # --- SOCIAL LINKS ---
 
 st.write("#")
@@ -102,7 +107,7 @@ col1, col2 = st.columns(2, gap="large")
 with col2:
     st.write("*Warm Regards,*")
     st.write("Arindam Tanti")
-    # st.image(signature_file_handle,clamp=False)
+    # st.image(SIGNATURE,clamp=False)
 
 # --- WORK HISTORY ---
 # Broadcom
